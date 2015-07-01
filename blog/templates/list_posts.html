@@ -4,6 +4,11 @@
   {% for post in posts %}
         {% include "post.html" %}
   {% endfor %}
+  <div>
+  {% if not posts %}
+        No posts, I am afraid
+  {% endif %}
+  </div>
   <br/> <br/> <br/>
   {{ super() }}
 {% endblock %}
