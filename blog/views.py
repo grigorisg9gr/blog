@@ -32,12 +32,16 @@ def add_tag():
     if request.method == 'POST':
         tag_name = request.form['tagname']
         new_tag = Tag(name=tag_name)
-        new_tag.save()
-        return '''Hello, you have added something ;)
-                <a href='/posts'>
-                back to the list
-                </a>
-                '''
+        try:
+             new_tag.save()
+             return '''Hello, you have added something ;)</br>
+                       <a href='/posts'>
+                       back to the list
+                       </a>
+                    '''
+        except:
+             return '''The tag you inserted, already exists, please try a different one.</br>
+		       <a href='/add/tag'>Back</a> '''
     tags = [tag['name'] for tag in Tag.objects.all()]
     return render_template('add_tag.html', tags=tags)
            
